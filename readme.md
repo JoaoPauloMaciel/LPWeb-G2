@@ -10,3 +10,4 @@ O software é composto por duas partes principais:
 Detalhes da estrutura e do funcionamento de cada um destes softwares podem ser obtidos nos arquivos `README.md` das suas respectivas pastas.
 
 A documentação está disponível a partir da pasta [docs](docs/readme.md).
+"# LPWeb-G2" 

@@ -1,0 +1,206 @@
+<!--form [FormGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <h5>Proposta de Estagio</h5>
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label class="col-form-label custom-select-label">Orientacão<span class="text-danger">*</span></label>
+              <select id="orientacao_id" name="orientacao_id" class="form-control" formControlName="orientacao_id"
+                [ngClass]="{
+                  'is-invalid':
+                    cadastroForm.get('orientacao_id').errors &&
+                    (cadastroForm.get('orientacao_id').dirty ||
+                      cadastroForm.get('orientacao_id').touched)
+                }">
+                <option *ngFor="let item of listaOrientacoes" [value]="item.id">
+                  {{ item.id }} - {{ item.aluno.nome }} - {{ item.curso.nome }} -
+                  {{ item.aluno.nome }} -
+                  {{ item.professor.funcionario.nome }} ({{
+                    item.professor.funcao | titlecase
+                  }}) - {{ item.ano }}-{{ item.semestre }} ({{
+                    item.tipo | titlecase
+                  }})</option>
+              </select>
+              <div class="invalid-feedback">
+                <span *ngIf="
+                    cadastroForm.get('orientacao_id').errors?.required &&
+                    (cadastroForm.get('orientacao_id').dirty ||
+                      cadastroForm.get('orientacao_id').touched)
+                  ">
+                  Orientacão é obrigatório
+                </span>
+              </div>
+            </div>
+          </div>
+          <-- Titulo >
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <div class="form-group">
+                <label for="titulo">Título<span class="text-danger">*</span></label>
+                <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Título"
+                  formControlName="titulo" [ngClass]="{
+                    'is-invalid':
+                      cadastroForm.get('titulo').errors &&
+                      (cadastroForm.get('titulo').dirty ||
+                        cadastroForm.get('titulo').touched)
+                  }" />
+                <div class="invalid-feedback">
+                  <span *ngIf="
+                      cadastroForm.get('titulo').errors?.required &&
+                      (cadastroForm.get('titulo').dirty ||
+                        cadastroForm.get('titulo').touched)
+                    ">
+                    Título é obrigatório
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          < Conceitos >
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <div class="form-group">
+                <label for="conceitos">Conceitos<span class="text-danger">*</span></label>
+                <textarea id="conceitos" name="conceitos" class="form-control" rows="3" placeholder="Conceitos"
+                  formControlName="conceitos" [ngClass]="{
+                    'is-invalid':
+                      cadastroForm.get('conceitos').errors &&
+                      (cadastroForm.get('conceitos').dirty ||
+                        cadastroForm.get('conceitos').touched)
+                  }"></textarea>
+                <div class="invalid-feedback">
+                  <span *ngIf="
+                      cadastroForm.get('conceitos').errors?.required &&
+                      (cadastroForm.get('conceitos').dirty ||
+                        cadastroForm.get('conceitos').touched)
+                    ">
+                    Conceitos é obrigatório
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          < Resultados Esperados >
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <div class="form-group">
+                <label for="resultados_esperados">Resultados Esperados<span class="text-danger">*</span></label>
+                <textarea id="resultados_esperados" name="resultados_esperados" class="form-control" rows="3"
+                  placeholder="Resultados esperados" formControlName="resultados_esperados" [ngClass]="{
+                    'is-invalid':
+                      cadastroForm.get('resultados_esperados').errors &&
+                      (cadastroForm.get('resultados_esperados').dirty ||
+                        cadastroForm.get('resultados_esperados').touched)
+                  }"></textarea>
+                <div class="invalid-feedback">
+                  <span *ngIf="
+                      cadastroForm.get('resultados_esperados').errors?.required &&
+                      (cadastroForm.get('resultados_esperados').dirty ||
+                        cadastroForm.get('resultados_esperados').touched)
+                    ">
+                    Resultados esperados é obrigatório
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 mb-3">
+          <button type="submit" class="btn btn-success float-right" [disabled]="!cadastroForm.valid">
+            <i class="fas fa-check"></i>Cadastrar</button>
+          <button type="reset" class="btn btn-secondary mr-2 float-right">
+            Limpar
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+<div class="container">
+    <h1>Cadastro de Proposta de estagio</h1>
+    <p>O formulario a seguir é para o cadasto de suas propostas de estagio. Preencha os campos! </p>
+    <hr>
+    <form #cadastro="ngForm">
+        <div class="form-group">
+            <label form="titulo">Titulo</label>
+            <input type="text" class="form-cont" id="titulo">
+        </div>
+    </form>
+    <hr>
+    <div class="alert alert-info" *ngIf="!propostas">
+        <strong>Aguarde</strong>. Carregando...
+    </div>
+</div-->
+<div class="card">
+    <div class="card-header">
+        <h1>Cadastro de Proposta de Estágio</h1>
+    </div>
+    <br>
+    <div class="alert alert-success" role="alert" *ngIf="sucesso">
+        Cadastro realizado com sucesso!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="error">
+        Não foi possivel realizar o cadastro!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="card-body">
+        <form action="cadastro"  #cadastro="ngForm"  (subimit)="enviarDados()">
+            <!-- Orientações-->
+            <div class="col-md-12 mb-3">
+                <label>Orientação <span class="required">*</span></label>
+                <select class="form-control" name="orientacao" [(ngModel)] = "orientacao" #selectOrienta="ngModel" required [class.is-invalid]="selectOrienta.invalid && (selectOrienta.dirty || selectOrienta.touched)">
+                    <option *ngFor = "let item of minhasOrientacoes" [value] = "item.id">{{item.aluno.nome}} - {{item.curso.nome}} - {{item.professor.funcionario.nome}} - {{item.ano}}/{{item.semestre}}</option>
+                </select>
+
+                <small class="form-text text-muted" *ngIf="!(selectOrienta.invalid && (selectOrienta.dirty || selectOrienta.touched))">Selecione uma orientação.</small>
+                <div *ngIf="selectOrienta.invalid && (selectOrienta.dirty || selectOrienta.touched)" class="invalid-feedback">
+                    <span *ngIf="selectOrienta.errors.required">A orientação deve ser selecionada.</span>
+                </div>
+            </div>
+            <!---->
+            <div class="col-md-12 mb-3">
+                <label>Título <span class="required">*</span></label>
+                <input type="text" class="form-control" name="titulo" [(ngModel)]="titulo" #selectTitulo="ngModel" required [class.is-invalid]="selectTitulo.invalid && (selectTitulo.dirty || selectTitulo.touched)">
+
+                <small class="form-text text-muted" *ngIf="!(selectTitulo.invalid && (selectTitulo.dirty || selectTitulo.touched))">Insira um título.</small>
+                <div *ngIf="selectTitulo.invalid && (selectTitulo.dirty || selectTitulo.touched)" class="invalid-feedback">
+                    <span *ngIf="selectTitulo.errors.required">O título deve ser inserido.</span>
+                </div>
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <label>Conceitos <span class="required">*</span></label>
+                <textarea class="form-control" name="conceitos" [(ngModel)]="conceitos" #selectConceitos="ngModel" required [class.is-invalid]="selectConceitos.invalid && (selectConceitos.dirty || selectConceitos.touched)"></textarea>
+
+                <small class="form-text text-muted" *ngIf="!(selectConceitos.invalid && (selectConceitos.dirty || selectConceitos.touched))">Insira os conceitos.</small>
+                <div *ngIf="selectConceitos.invalid && (selectConceitos.dirty || selectConceitos.touched)" class="invalid-feedback">
+                    <span *ngIf="selectConceitos.errors.required">Os conceitos devem ser inseridos.</span>
+                </div>
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <label>Resultados Esperados <span class="required">*</span></label>
+                <textarea class="form-control" name="resultados" [(ngModel)]="resultados" #selectResultados="ngModel" required [class.is-invalid]="selectResultados.invalid && (selectResultados.dirty || selectResultados.touched)"></textarea>
+
+                <small class="form-text text-muted" *ngIf="!(selectResultados.invalid && (selectResultados.dirty || selectResultados.touched))">Insira os resultados esperados.</small>
+                <div *ngIf="selectResultados.invalid && (selectResultados.dirty || selectResultados.touched)" class="invalid-feedback">
+                    <span *ngIf="selectResultados.errors.required">Os resultados esperados devem ser inseridos.</span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button  type="button" class="btn btn-success float-right" (click)="enviarDados()" [disabled]="cadastro.invalid"><i class="fas fa-check"></i>
+                    Cadastrar
+                </button>
+                <button type="reset" class="btn btn-secondary mr-2 float-right">Limpar</button>
+            </div>
+        </form>
+    </div>
+</div>

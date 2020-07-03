@@ -16,6 +16,11 @@ import { InicioComponent } from './inicio/inicio.component';
 import { HomeInicioComponent } from './home-inicio/home-inicio.component';
 import { PropostaDeTCCComponent } from './proposta-de-tcc/proposta-de-tcc.component';
 import { PropostasDeTCCComponent } from './propostas-de-tcc/propostas-de-tcc.component';
+//JPSM - ESTAGIO
+import { PropostaEstagioComponent } from './proposta-estagio/proposta-estagio.component';
+import { AbrirPropostaEstagioComponent } from './proposta-estagio/abrir-proposta-estagio/abrir-proposta-estagio.component';
+import { CadastrarProostaEstagioComponent } from './proposta-estagio/cadastrar-proosta-estagio/cadastrar-proosta-estagio.component';
+import { EditarPropostaEstagioComponent } from './proposta-estagio/editar-proposta-estagio/editar-proposta-estagio.component';
 
 registerLocaleData(localePt, 'pt', localePtExtra);
 
@@ -30,7 +35,11 @@ registerLocaleData(localePt, 'pt', localePtExtra);
     InicioComponent,
     HomeInicioComponent,
     PropostaDeTCCComponent,
-    PropostasDeTCCComponent
+    PropostasDeTCCComponent,
+    PropostaEstagioComponent,
+    AbrirPropostaEstagioComponent,
+    CadastrarProostaEstagioComponent,
+    EditarPropostaEstagioComponent
   ],
   imports: [
     BrowserModule,
